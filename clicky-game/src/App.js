@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <Scorebar score={this.state.score}/>
-        <Images />
+        <Images incrementScore={this.scoreUpdate}/>
       </div>
     );
   }
