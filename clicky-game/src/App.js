@@ -9,17 +9,24 @@ class App extends Component {
     score: 0
   }
 
-  scoreUpdate = () => {
+  updateScore = () => {
     this.setState({
       score: this.state.score + 1
     });
   }
+  
+  resetScore = () => {
+    this.setState({
+      score: 0
+    });
+  }
+
 
   render() {
     return (
       <div className="App">
         <Scorebar score={this.state.score}/>
-        <Images incrementScore={this.scoreUpdate}/>
+        <Images incrementScore={this.updateScore}/>
       </div>
     );
   }

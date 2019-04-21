@@ -13,13 +13,14 @@ class Images extends React.Component {
         this.resetImageList()
     }
 
-    //function to reset images to isClicked: false
+    //function to reset images to isClicked: false, add id number
     resetImageList = () => {
         const imageList = [];
-        for(let i = 1; i <= 12; i++) {
+        for (let i = 1; i <= 12; i++) {
             imageList.push({
                 imgSrc: images["img" + i],
-                isClicked: false
+                isClicked: false,
+                id: i
             })
         }
         this.setState({
@@ -28,28 +29,35 @@ class Images extends React.Component {
     }
 
     //based on if image has been clicked increase score or restart game
-    handleImageClick = () => {
-        this.props.incrementScore()        
+    handleImageClick = (event) => {
+        console.log(event.target.id);
+        this.props.incrementScore()
+    //use lowDash to create a copy of state.imageList loop through that copy until we reach the image object that has the same id as the image that we clicked (event.target.id)
+
+    //once reached, see if already been clicked. if isClicked = true, GAME OVER!
+
+    //see app.js for create restart game 
     }
 
 
     render() {
 
-        const imageList = [];
-        for(let i = 1; i <= 12; i++) {
-            imageList.push((
+        const images = this.state.imageList.map((image) => {
+            return (
                 <div className="character-list-image">
-                    <img src={images["img" + i]} alt="character" onClick={this.handleImageClick} />
+                    <img src={image.imgSrc} alt="character" id={image.id} onClick={this.handleImageClick} />
                 </div>
-            ))
-        }
+            )
+        })
 
         return (
             <div className="character-list">
-                {imageList}
+                {images}
             </div>
         )
     }
 }
 
 export default Images;
+
+
