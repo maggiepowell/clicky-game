@@ -8,14 +8,14 @@ class Images extends React.Component {
         const imageList = [];
         for(let i = 1; i <= 12; i++) {
             imageList.push((
-                <div>
+                <div className="character-list-image">
                     <img src={images["img" + i]} alt="character" />
                 </div>
             ))
         }
 
         return (
-            <div>
+            <div className="character-list">
                 {imageList}
             </div>
         )
