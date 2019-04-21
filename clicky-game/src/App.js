@@ -1,13 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Scorebar from './scorebar';
 import Images from './images';
 import './App.css';
 
 class App extends Component {
+
+  state = {
+    score: 0
+  }
+
+  scoreUpdate = () => {
+    this.setState({
+      score: this.state.score + 1
+    });
+  }
+
   render() {
     return (
       <div className="App">
+        <Scorebar score={this.state.score}/>
         <Images />
       </div>
     );

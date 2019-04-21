@@ -1,7 +1,12 @@
 import React from 'react';
 
-class Scorebar extends React.Component {
+const Scorebar = (props) => {
 
-}
+        return (
+            <div>
+            Score: {props.score}
+            </div>
+        )
+    }
 
 export default Scorebar;
