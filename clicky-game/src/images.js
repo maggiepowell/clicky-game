@@ -10,6 +10,11 @@ class Images extends React.Component {
     //componentDidMount is a life cycle hook that will run immediately before the component renders on the DOM
     //only runs once in the life of that component
     componentDidMount() {
+        this.resetImageList()
+    }
+
+    //function to reset images to isClicked: false
+    resetImageList = () => {
         const imageList = [];
         for(let i = 1; i <= 12; i++) {
             imageList.push({
@@ -22,6 +27,7 @@ class Images extends React.Component {
         })
     }
 
+    //based on if image has been clicked increase score or restart game
     handleImageClick = () => {
         this.props.incrementScore()        
     }
