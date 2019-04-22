@@ -1,5 +1,7 @@
 import React from 'react';
 import images from './sanrio_characters/character_index';
+//installing Lodash to handle shuffle and deep copy 
+import _ from 'lodash';
 
 class Images extends React.Component {
 
@@ -29,32 +31,36 @@ class Images extends React.Component {
     }
 
     //based on if image has been clicked increase score or restart game
+    //use cloneDeep and shuffle methods from Lodash
+    
     handleImageClick = (event) => {
+        let imageList = _.cloneDeep(this.state.imageList);
         console.log(event.target.id);
         this.props.incrementScore();
 
         //see if image has been clicked
-        this.state.imageList.forEach((image) => {
+        imageList.forEach((image) => {
             //change event.target.id to a number format
             if (image.id === Number(event.target.id)) {
+                console.log("image has been clicked");
+                console.log(image);
                 if (image.isClicked) {
                     //if the image has been clicked reset score!
+                    this.props.resetScore();
                 }
                 else {
                     //set image to true
                     image.isClicked = true;
+                    this.props.incrementScore();
                 }
             }
         });
 
-        //function to shuffle array of images
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-              let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-              [array[i], array[j]] = [array[j], array[i]]; // swap elements
-            }
-        }
-          
+        //shuffle array of images
+        imageList = _.shuffle(imageList);
+        this.setState({
+            imageList
+        });         
 
     //once reached, see if already been clicked. if isClicked = true, GAME OVER!
 
